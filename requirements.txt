@@ -1,0 +1,2 @@
+# Requirements for telegram-bridge
+# This project uses only Python standard library. No extra packages required.

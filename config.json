@@ -1,0 +1,21 @@
+{
+    "token":  "8242942551:AAEgIYNVdlzp2t70gE0h9oQ5f_mN39TP1eM",
+    "password":  "CHANGE_ME",
+    "allowed_chat_ids":  [
+                             5164542729
+                         ],
+    "poll_interval_sec":  2,
+    "request_timeout_sec":  50,
+    "codex_command":  [
+                          "node",
+                          "C:\\Users\\jimik\\AppData\\Roaming\\npm\\node_modules\\@openai\\codex\\bin\\codex.js"
+                      ],
+    "codex_workdir":  "D:\\codex-project",
+    "codex_extra_args":  [
+                             "--skip-git-repo-check"
+                         ],
+    "codex_sandbox":  "danger-full-access",
+    "codex_timeout_sec":  300,
+    "gui":  true,
+    "show_thinking":  false
+}
