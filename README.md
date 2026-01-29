@@ -1,10 +1,10 @@
-# Telegram ? Codex Bridge
+# Telegram -Codex Bridge
 
 A local Telegram bot bridge that forwards messages to Codex CLI and sends replies back to Telegram. Includes a dark GUI for live logs and configuration.
 
-±¾ÏîÄ¿ÊÇÒ»¸ö±¾µØ Telegram »úÆ÷ÈËÇÅ½ÓÆ÷£º°Ñ Telegram ÏûÏ¢×ª·¢¸ø Codex CLI£¬²¢°Ñ Codex »Ø¸´»Ø´«µ½ Telegram£¬Í¬Ê±Ìá¹©ºÚÉ«Ö÷Ìâ GUI ·½±ã²é¿´ÈÕÖ¾ºÍĞŞ¸ÄÅäÖÃ¡£
+æœ¬é¡¹ç›®æ˜¯ä¸€ä¸ªæœ¬åœ° Telegram æœºå™¨äººæ¡¥æ¥å™¨ï¼šæŠŠ Telegram æ¶ˆæ¯è½¬å‘ç»™ Codex CLIï¼Œå¹¶æŠŠ Codex å›å¤å›ä¼ åˆ° Telegramï¼ŒåŒæ—¶æä¾›é»‘è‰²ä¸»é¢˜ GUI æ–¹ä¾¿æŸ¥çœ‹æ—¥å¿—å’Œä¿®æ”¹é…ç½®ã€‚
 
-## Features / ¹¦ÄÜ
+## Features / åŠŸèƒ½
 
 - Long polling (no public domain required)
 - Forward Telegram messages to `codex exec`
@@ -12,23 +12,23 @@ A local Telegram bot bridge that forwards messages to Codex CLI and sends replie
 - GUI for live logs and config editing
 - Optional thinking-output filter
 
-- ³¤ÂÖÑ¯£¨²»ĞèÒª¹«ÍøÓòÃû£©
-- Telegram ÏûÏ¢×ª·¢µ½ `codex exec`
-- ×Ô¶¯°Ñ Codex »Ø¸´»Ø´« Telegram
-- GUI ÊµÊ±ÈÕÖ¾ÓëÅäÖÃ±à¼­
-- ¿ÉÑ¡Òş²Ø thinking Êä³ö
+- é•¿è½®è¯¢ï¼ˆä¸éœ€è¦å…¬ç½‘åŸŸåï¼‰
+- Telegram æ¶ˆæ¯è½¬å‘åˆ° `codex exec`
+- è‡ªåŠ¨æŠŠ Codex å›å¤å›ä¼  Telegram
+- GUI å®æ—¶æ—¥å¿—ä¸é…ç½®ç¼–è¾‘
+- å¯é€‰éšè— thinking è¾“å‡º
 
-## Requirements / »·¾³ÒªÇó
+## Requirements / ç¯å¢ƒè¦æ±‚
 
 - Python 3.8+
 - Node.js (for Codex CLI wrapper)
 - Codex CLI installed via npm (or another path you configure)
 
 - Python 3.8+
-- Node.js£¨ÓÃÓÚÔËĞĞ Codex CLI£©
-- ÒÑ°²×° Codex CLI£¨npm °²×°»ò×Ô¶¨ÒåÂ·¾¶£©
+- Node.jsï¼ˆç”¨äºè¿è¡Œ Codex CLIï¼‰
+- å·²å®‰è£… Codex CLIï¼ˆnpm å®‰è£…æˆ–è‡ªå®šä¹‰è·¯å¾„ï¼‰
 
-## Setup / Ê¹ÓÃ²½Öè
+## Setup / ä½¿ç”¨æ­¥éª¤
 
 1. Edit `config.json`:
    - `token`: Telegram bot token
@@ -40,23 +40,23 @@ A local Telegram bot bridge that forwards messages to Codex CLI and sends replie
    - `codex_sandbox`: `read-only` | `workspace-write` | `danger-full-access`
    - `show_thinking`: `true` or `false`
 
-1. ±à¼­ `config.json`£º
-   - `token`£ºTelegram »úÆ÷ÈË token
-   - `password`£ºÃüÁî¿ÚÁî
-   - `allowed_chat_ids`£ºÔÊĞíµÄ chat_id ÁĞ±í
-   - `codex_command`£ºCodex CLI Æô¶¯ÃüÁîÊı×é
-   - `codex_workdir`£º¹¤×÷Ä¿Â¼£¨`-C`£©
-   - `codex_extra_args`£º¶îÍâ²ÎÊı£¨Èç `--skip-git-repo-check`£©
-   - `codex_sandbox`£º`read-only` | `workspace-write` | `danger-full-access`
-   - `show_thinking`£ºÊÇ·ñÏÔÊ¾ thinking
+1. ç¼–è¾‘ `config.json`ï¼š
+   - `token`ï¼šTelegram æœºå™¨äºº token
+   - `password`ï¼šå‘½ä»¤å£ä»¤
+   - `allowed_chat_ids`ï¼šå…è®¸çš„ chat_id åˆ—è¡¨
+   - `codex_command`ï¼šCodex CLI å¯åŠ¨å‘½ä»¤æ•°ç»„
+   - `codex_workdir`ï¼šå·¥ä½œç›®å½•ï¼ˆ`-C`ï¼‰
+   - `codex_extra_args`ï¼šé¢å¤–å‚æ•°ï¼ˆå¦‚ `--skip-git-repo-check`ï¼‰
+   - `codex_sandbox`ï¼š`read-only` | `workspace-write` | `danger-full-access`
+   - `show_thinking`ï¼šæ˜¯å¦æ˜¾ç¤º thinking
 
-2. Run / ÔËĞĞ£º
+2. Run / è¿è¡Œï¼š
 
 ```bash
 py telegram_bridge.py
 ```
 
-## Deployment / ²¿Êğ
+## Deployment / éƒ¨ç½²
 
 Clone and run locally:
 
@@ -72,7 +72,7 @@ For dependencies (none required):
 pip install -r requirements.txt
 ```
 
-±¾µØ¿ËÂ¡ºóÖ±½ÓÔËĞĞ£º
+æœ¬åœ°å…‹éš†åç›´æ¥è¿è¡Œï¼š
 
 ```bash
 git clone <your-repo-url>
@@ -80,13 +80,13 @@ cd telegram-bridge
 py telegram_bridge.py
 ```
 
-ÒÀÀµ°²×°£¨±¾ÏîÄ¿ÎŞµÚÈı·½ÒÀÀµ£©£º
+ä¾èµ–å®‰è£…ï¼ˆæœ¬é¡¹ç›®æ— ç¬¬ä¸‰æ–¹ä¾èµ–ï¼‰ï¼š
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Telegram Commands / Ö¸Áî
+## Telegram Commands / æŒ‡ä»¤
 
 - `/help`
 - `/status <password>`
@@ -94,31 +94,31 @@ pip install -r requirements.txt
 
 All other messages are forwarded to Codex.
 
-³ıÒÔÉÏÃüÁîÍâ£¬ÆäËüÏûÏ¢¶¼»á×ª·¢¸ø Codex¡£
+é™¤ä»¥ä¸Šå‘½ä»¤å¤–ï¼Œå…¶å®ƒæ¶ˆæ¯éƒ½ä¼šè½¬å‘ç»™ Codexã€‚
 
-## FAQ / ³£¼ûÎÊÌâ
+## FAQ / å¸¸è§é—®é¢˜
 
-**Q: ÎªÊ²Ã´Ã»ÓĞ webhook£¿**
-A: ±¾ÏîÄ¿Ê¹ÓÃ³¤ÂÖÑ¯£¬²»ĞèÒª¹«ÍøÓòÃû»ò·´Ïò´úÀí¡£
+**Q: ä¸ºä»€ä¹ˆæ²¡æœ‰ webhookï¼Ÿ**
+A: æœ¬é¡¹ç›®ä½¿ç”¨é•¿è½®è¯¢ï¼Œä¸éœ€è¦å…¬ç½‘åŸŸåæˆ–åå‘ä»£ç†ã€‚
 
-**Q: ÎªÊ²Ã´ÌáÊ¾ not inside a trusted directory£¿**
-A: ÔÚ `codex_extra_args` Àï¼Ó `--skip-git-repo-check`¡£
+**Q: ä¸ºä»€ä¹ˆæç¤º not inside a trusted directoryï¼Ÿ**
+A: åœ¨ `codex_extra_args` é‡ŒåŠ  `--skip-git-repo-check`ã€‚
 
-**Q: ÎªÊ²Ã´Êä³öÈ«ÊÇÂÒÂë»ò UnicodeDecodeError£¿**
-A: ÇëÓÃ `py -X utf8 telegram_bridge.py` ÔËĞĞ£¬»òÈ·ÈÏÏµÍ³±àÂëÎª UTF-8¡£
+**Q: ä¸ºä»€ä¹ˆè¾“å‡ºå…¨æ˜¯ä¹±ç æˆ– UnicodeDecodeErrorï¼Ÿ**
+A: è¯·ç”¨ `py -X utf8 telegram_bridge.py` è¿è¡Œï¼Œæˆ–ç¡®è®¤ç³»ç»Ÿç¼–ç ä¸º UTF-8ã€‚
 
-**Q: thinking Êä³öÌ«³¤ÔõÃ´°ì£¿**
-A: ÔÚ GUI ¹´Ñ¡/È¡Ïû ¡°Show thinking¡±£¬»òÔÚ `config.json` ÉèÖÃ `show_thinking`¡£
+**Q: thinking è¾“å‡ºå¤ªé•¿æ€ä¹ˆåŠï¼Ÿ**
+A: åœ¨ GUI å‹¾é€‰/å–æ¶ˆ â€œShow thinkingâ€ï¼Œæˆ–åœ¨ `config.json` è®¾ç½® `show_thinking`ã€‚
 
-## Notes / ËµÃ÷
+## Notes / è¯´æ˜
 
 - Long polling means no webhook/domain required.
 - For Windows, keep paths escaped in JSON (e.g., `D:\\codex-project`).
 
-- ³¤ÂÖÑ¯²»ĞèÒª webhook »ò¹«ÍøÓòÃû¡£
-- Windows Â·¾¶ÔÚ JSON ÀïĞèÒª×ªÒå£¨ÀıÈç `D:\\codex-project`£©¡£
+- é•¿è½®è¯¢ä¸éœ€è¦ webhook æˆ–å…¬ç½‘åŸŸåã€‚
+- Windows è·¯å¾„åœ¨ JSON é‡Œéœ€è¦è½¬ä¹‰ï¼ˆä¾‹å¦‚ `D:\\codex-project`ï¼‰ã€‚
 
-## Files / ÎÄ¼şËµÃ÷
+## Files / æ–‡ä»¶è¯´æ˜
 
 - `telegram_bridge.py` - main script
 - `config.json` - runtime config
@@ -126,8 +126,9 @@ A: ÔÚ GUI ¹´Ñ¡/È¡Ïû ¡°Show thinking¡±£¬»òÔÚ `config.json` ÉèÖÃ `show_thinking`¡£
 - `codex_reply.txt` - last Codex reply
 - `requirements.txt` - dependency list
 
-- `telegram_bridge.py` - Ö÷½Å±¾
-- `config.json` - ÔËĞĞÅäÖÃ
-- `inbox.jsonl` - Ô­Ê¼½ÓÊÕÏûÏ¢
-- `codex_reply.txt` - ×î½üÒ»´Î Codex »Ø¸´
-- `requirements.txt` - ÒÀÀµÁĞ±í
+- `telegram_bridge.py` - ä¸»è„šæœ¬
+- `config.json` - è¿è¡Œé…ç½®
+- `inbox.jsonl` - åŸå§‹æ¥æ”¶æ¶ˆæ¯
+- `codex_reply.txt` - æœ€è¿‘ä¸€æ¬¡ Codex å›å¤
+- `requirements.txt` - ä¾èµ–åˆ—è¡¨
+
