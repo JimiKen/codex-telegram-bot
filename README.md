@@ -85,6 +85,7 @@ py telegram_bridge.py
 ```bash
 pip install -r requirements.txt
 ```
+![Uploading image.png…]()
 
 ## Telegram Commands / 指令
 
@@ -95,6 +96,7 @@ pip install -r requirements.txt
 All other messages are forwarded to Codex.
 
 除以上命令外，其它消息都会转发给 Codex。
+
 
 ## FAQ / 常见问题
 
@@ -131,4 +133,5 @@ A: 在 GUI 勾选/取消 “Show thinking”，或在 `config.json` 设置 `show
 - `inbox.jsonl` - 原始接收消息
 - `codex_reply.txt` - 最近一次 Codex 回复
 - `requirements.txt` - 依赖列表
+
 
