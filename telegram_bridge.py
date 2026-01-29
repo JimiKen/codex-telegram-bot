@@ -40,7 +40,7 @@ def load_config():
 
 def load_state():
     if not os.path.exists(STATE_PATH):
-        return {"offset": 0}
+        return {"offset": 0, "session_started": False}
     with open(STATE_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -137,7 +137,14 @@ def run_codex(config, prompt):
     if workdir:
         sanitized += ["-C", workdir]
 
-    full_cmd = cmd + ["exec"] + sanitized + [prompt]
+    use_session = config.get("use_session", True)
+    state = load_state()
+    session_started = bool(state.get("session_started"))
+
+    base_cmd = cmd + ["exec"]
+    if use_session and session_started:
+        base_cmd += ["resume", "--last"]
+    full_cmd = base_cmd + sanitized + [prompt]
     timeout = int(config.get("codex_timeout_sec", 300))
     result = subprocess.run(
         full_cmd,
@@ -147,12 +154,27 @@ def run_codex(config, prompt):
         errors="replace",
         timeout=timeout,
     )
+    if use_session and session_started and result.returncode != 0:
+        # Fallback to a fresh session if resume fails.
+        base_cmd = cmd + ["exec"]
+        full_cmd = base_cmd + sanitized + [prompt]
+        result = subprocess.run(
+            full_cmd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=timeout,
+        )
     out = result.stdout.strip()
     err = result.stderr.strip()
     if err:
         out = (out + "\n" if out else "") + "[stderr] " + err
     if not out:
         out = "(no output)"
+    if use_session and result.returncode == 0 and not session_started:
+        state["session_started"] = True
+        save_state(state)
     return result.returncode, out
 
 
@@ -160,13 +182,22 @@ def strip_thinking(text):
     # Remove common "thinking" blocks and tags from model output.
     text = re.sub(r"```thinking[\s\S]*?```", "", text, flags=re.IGNORECASE)
     text = re.sub(r"<thinking>[\s\S]*?</thinking>", "", text, flags=re.IGNORECASE)
-    # Drop lines that look like inline thinking labels.
-    lines = []
-    for line in text.splitlines():
-        if line.strip().lower().startswith(("thinking:", "thoughts:", "analysis:")):
+    lines = text.splitlines()
+    cleaned = []
+    skipping = False
+    for line in lines:
+        low = line.strip().lower()
+        if low == "thinking" or low.startswith("thinking:"):
+            skipping = True
             continue
-        lines.append(line)
-    return "\n".join(lines).strip() or "(no output)"
+        if skipping and low.startswith("exec"):
+            skipping = False
+            cleaned.append(line)
+            continue
+        if skipping:
+            continue
+        cleaned.append(line)
+    return "\n".join(cleaned).strip() or "(no output)"
 
 
 def handle_message(token, config, message):
@@ -377,6 +408,19 @@ def start_gui():
     )
     thinking_check.pack(anchor="w", padx=8, pady=(4, 0))
 
+    session_var = tk.BooleanVar(value=bool(cfg.get("use_session", True)))
+    session_check = tk.Checkbutton(
+        sidebar,
+        text="Use session (keep context)",
+        variable=session_var,
+        bg="#111111",
+        fg="#e6e6e6",
+        selectcolor="#111111",
+        activebackground="#111111",
+        activeforeground="#e6e6e6",
+    )
+    session_check.pack(anchor="w", padx=8, pady=(4, 0))
+
     def refresh_fields():
         with CONFIG_LOCK:
             c = GLOBAL_CONFIG or load_config()
@@ -399,6 +443,7 @@ def start_gui():
         set_entry(codex_timeout_entry, str(c.get("codex_timeout_sec", 300)))
         gui_var.set(bool(c.get("gui", False)))
         thinking_var.set(bool(c.get("show_thinking", False)))
+        session_var.set(bool(c.get("use_session", True)))
 
     def save_config_gui():
         try:
@@ -424,6 +469,7 @@ def start_gui():
             "codex_timeout_sec": int(codex_timeout_entry.get().strip() or 300),
             "gui": bool(gui_var.get()),
             "show_thinking": bool(thinking_var.get()),
+            "use_session": bool(session_var.get()),
         }
         with CONFIG_LOCK:
             global GLOBAL_CONFIG

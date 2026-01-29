@@ -17,5 +17,6 @@
     "codex_sandbox":  "danger-full-access",
     "codex_timeout_sec":  300,
     "gui":  true,
-    "show_thinking":  false
+    "show_thinking":  false,
+    "use_session":  true
 }
