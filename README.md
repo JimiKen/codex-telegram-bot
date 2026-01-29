@@ -85,7 +85,7 @@ py telegram_bridge.py
 ```bash
 pip install -r requirements.txt
 ```
-![logo](images/截图1.png)
+![运行截图](截图1.png)
 
 ## Telegram Commands / 指令
 
@@ -133,6 +133,7 @@ A: 在 GUI 勾选/取消 “Show thinking”，或在 `config.json` 设置 `show
 - `inbox.jsonl` - 原始接收消息
 - `codex_reply.txt` - 最近一次 Codex 回复
 - `requirements.txt` - 依赖列表
+
 
 
 
